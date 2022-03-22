@@ -72,9 +72,9 @@ block : T_BEGIN stmt_list T_END
   ;
 
 foreach : T_FOREACH
-	  varref	
-          T_IN 
-          '('a_fact ':' a_fact ')' 
+	  varref
+	  T_IN
+          '('a_fact ':'a_fact ')'
           stmt
     ;
 
@@ -84,16 +84,16 @@ while : T_WHILE l_expr stmt
 repeat : T_REPEAT stmt_list T_UNTIL l_expr
   ;
 
-if_stmt : T_IF l_expr T_THEN else_stmt
+if_stmt : T_IF l_expr T_THEN stmt else_stmt
   ;
 
-else_stmt : 
+else_stmt :
   | T_ELSE stmt
   ;
 
 assignment : varref T_ASSIGN l_expr ;
 
-a_expr : a_expr T_ADD a_term 
+a_expr : a_expr T_ADD a_term
     | a_expr T_SUB a_term
     | a_term
     ;
@@ -141,7 +141,7 @@ read : T_READ varlist ;
 
 write: T_WRITE expr_list;
 
-varlist : varref 
+varlist : varref
       | varlist ',' varref
       ;
 
